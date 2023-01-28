@@ -1,16 +1,23 @@
 import Head from "next/head";
+import React from "react";
 
-export default function Home() {
+const Home = () => {
   return (
-    <>
-      <Head>
-        <title>Entertainment Web App</title>
-        <meta name="description" content="multi-page entertainment web app" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div>
+      <>
+        <Head>
+          <title>Entertainment Web App</title>
+          <meta name="description" content="multi-page entertainment web app" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="icon" href="/logo.svg" />
+        </Head>
 
-      <main className="flex items-center justify-center min-h-screen"><h1 className="text-3xl font-bold text-blue-500">Hello Next</h1></main>
-    </>
+        <main className="flex items-center justify-center min-h-screen bg-midnight-blue">
+          <h1 className="text-3xl font-bold text-bright-red">Hello Next</h1>
+        </main>
+      </>
+    </div>
   );
-}
+};
+
+export default Home;
