@@ -8,8 +8,8 @@ import BookmarkIcon from "../public/assets/icon-nav-bookmark.svg";
 
 const Navbar = () => {
   return (
-    <div className="absolute top-0 flex items-center justify-between w-full p-4 bg-navy-blue">
-      <Link href="/">
+    <nav className="absolute top-0 flex items-center justify-between w-full p-4 bg-navy-blue lg:flex-col lg:left-0 lg:h-full lg:w-24 lg:max-h-[60rem] lg:ml-4 lg:my-4 lg:rounded-xl">
+      <Link href="/" className="w-7 h-7 inline-block" id="hey">
         <Image
           src={"/assets/logo.svg"}
           alt="logo"
@@ -19,8 +19,11 @@ const Navbar = () => {
         />
       </Link>
 
-      <div className="flex items-center w-full justify-evenly">
-        <ul className="flex space-x-4">
+      <div
+        id="hello"
+        className="flex items-center w-full justify-evenly absolute left-0 right-0 mx-auto lg:top-20"
+      >
+        <ul className="flex space-x-4 lg:flex-col lg:justify-center lg:justify-items-center lg:space-x-0 lg:space-y-6">
           <li>
             <Link href="/">
               <HomeIcon className="text-steel-blue hover:text-white" />
@@ -43,6 +46,7 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
+
       <Image
         src={"/assets/image-avatar.png"}
         alt="avatar"
@@ -50,7 +54,7 @@ const Navbar = () => {
         height={30}
         className="border-2 border-white rounded-full"
       />
-    </div>
+    </nav>
   );
 };
 

@@ -2,9 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  .svg-icon {
-    fill: var("#fff", currentColor);
-}
-
-}
