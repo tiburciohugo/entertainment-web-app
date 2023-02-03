@@ -11,6 +11,7 @@ export default defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -30,6 +31,7 @@ export default defineType({
       name: 'releaseDate',
       title: 'Release date',
       type: 'datetime',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'poster',

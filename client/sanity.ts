@@ -5,7 +5,7 @@ const client = createClient({
   projectId: "ia8fmily",
   dataset: "production",
   useCdn: true,
-  apiVersion: "export const urlFor = (source) => builder.image(source);",
+  apiVersion: "2022-03-25",
 });
 
 const builder = ImageUrlBuilder(client);
