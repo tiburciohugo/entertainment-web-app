@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Trending from "@/components/Trending";
 import client, { urlFor } from "@/sanity";
+import Head from "next/head";
 
 interface Movie {
   poster: string;
@@ -48,12 +49,20 @@ const Home = () => {
           `*[_type == "movie" && title match "${debouncedValue}*"]{title, poster}`
         );
         setSuggestions(data.map((d: Movie[]) => d));
+      } else {
+        setSuggestions([]);
       }
     })();
   }, [debouncedValue]);
 
+  console.log(suggestions);
+
   return (
     <>
+      <Head>
+        <title>Home | Entertainment Web App</title>
+      </Head>
+
       <Navbar />
       <main className="w-full h-full px-4 pb-4 bg-midnight-blue lg:p-4">
         {/* Search bar */}
@@ -80,36 +89,43 @@ const Home = () => {
           Recommended for you
         </h2>
         <div className="grid w-full grid-cols-2 gap-4 mt-4 md:grid-cols-3 lg:grid-cols-4 grid-rows-max h-fit lg:pl-32">
-          {suggestions.map((suggestion: Movie) => {
-            return (
-              <div className="relative cursor-pointer" key={suggestion.title}>
-                <h2 className="absolute bottom-0 text-sm font-bold text-white left-2">
-                  {suggestion.title}
-                </h2>
-                <img
-                  className="rounded-lg object-cover min-w-60 md:h-60 md:w-[29.5rem]"
-                  src={
-                    suggestion.poster
-                      ? urlFor(suggestion?.poster).width(240).height(140).url()
-                      : "/assets/no-image.webp"
-                  }
-                ></img>
-              </div>
-            );
-          })}
-          {movies.map((movie) => {
-            return (
-              <div className="relative cursor-pointer">
-                <h2 className="absolute bottom-0 text-sm font-bold text-white left-2">
-                  {movie.title}
-                </h2>
-                <img
-                  className="rounded-lg object-cover min-w-60 md:h-60 md:w-[29.5rem]"
-                  src={urlFor(movie.poster).width(240).height(140).url()}
-                ></img>
-              </div>
-            );
-          })}
+          {suggestions.length
+            ? suggestions.map((suggestion: Movie) => {
+                return (
+                  <div
+                    className="relative cursor-pointer"
+                    key={suggestion.title}
+                  >
+                    <h2 className="absolute bottom-0 text-sm font-bold text-white left-2">
+                      {suggestion.title}
+                    </h2>
+                    <img
+                      className="rounded-lg object-cover min-w-60 md:h-60 md:w-[29.5rem]"
+                      src={
+                        suggestion.poster
+                          ? urlFor(suggestion?.poster)
+                              .width(240)
+                              .height(140)
+                              .url()
+                          : "/assets/no-image.webp"
+                      }
+                    ></img>
+                  </div>
+                );
+              })
+            : movies.map((movie) => {
+                return (
+                  <div className="relative cursor-pointer">
+                    <h2 className="absolute bottom-0 text-sm font-bold text-white left-2">
+                      {movie.title}
+                    </h2>
+                    <img
+                      className="rounded-lg object-cover min-w-60 md:h-60 md:w-[29.5rem]"
+                      src={urlFor(movie.poster).width(240).height(140).url()}
+                    ></img>
+                  </div>
+                );
+              })}
         </div>
       </main>
     </>
